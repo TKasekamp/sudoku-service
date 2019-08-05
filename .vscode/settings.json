@@ -3,7 +3,10 @@
   "eslint.autoFixOnSave": true,
   "eslint.validate": [
     "javascript",
-    { "language": "typescript", "autoFix": true }
+    {
+      "language": "typescript",
+      "autoFix": true
+    }
   ],
   "editor.formatOnSave": true,
   "[javascript]": {
@@ -15,6 +18,7 @@
   "[markdown]": {
     "editor.formatOnSave": false
   },
+  "jest.debugMode": true,
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
@@ -22,6 +26,9 @@
     "**/coverge": true
   },
   "typescript.referencesCodeLens.enabled": true,
-  "appService.zipIgnorePattern": [".vscode{,/**}"],
-  "appService.deploySubpath": ""
+  "appService.zipIgnorePattern": [
+    ".vscode{,/**}"
+  ],
+  "appService.deploySubpath": "",
+  "appService.defaultWebAppToDeploy": "/subscriptions/95cd3712-8bee-4e2f-9354-3931904b4508/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/sudoku-service"
 }
