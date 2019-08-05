@@ -45,8 +45,8 @@ stages:
       displayName: 'Publish code coverage results'
       inputs:
         codeCoverageTool: 'cobertura'
-        summaryFileLocation: ${System.DefaultWorkingDirectory}/coverage/cobetura-coverage.xml
-        reportDirectory: ${System.DefaultWorkingDirectory}/coverage
+        summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobetura-coverage.xml
+        reportDirectory: $(System.DefaultWorkingDirectory)/coverage
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
