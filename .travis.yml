@@ -6,6 +6,7 @@ node_js:
 #    - mongodb
 deploy:
   provider: azure_web_apps
+  username: "sudoku-service\$sudoku-service"
   site: "sudoku-service"
   verbose: true
 cache:
