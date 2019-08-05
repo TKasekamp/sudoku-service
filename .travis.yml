@@ -4,6 +4,10 @@ node_js:
     - "10"
 #services:
 #    - mongodb
+deploy:
+  provider: azure_web_apps
+  site: "sudoku-service"
+  verbose: true
 cache:
     directories:
         - node_modules
