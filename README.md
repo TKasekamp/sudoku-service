@@ -6,5 +6,6 @@
 This service has been forked from [https://github.com/microsoft/TypeScript-Node-Starter](microsoft/TypeScript-Node-Starter)
 
 ## License
+Copyright (c) Tõnis Kasekamp. All rights reserved.
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the [MIT](LICENSE.txt) License.
