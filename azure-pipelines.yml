@@ -3,9 +3,6 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- master
-
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
@@ -38,6 +35,19 @@ stages:
         npm run test --if-present
       displayName: 'npm install, build and test'
       
+    - task: PublishTestResults@2
+      displayName: 'Publish Jest test results'
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'junit.xml'
+
+    - task: PublishCodeCoverageResults@1
+      displayName: 'Publish code coverage results'
+      inputs:
+        codeCoverageTool: 'cobertura'
+        summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
+        reportDirectory: $(System.DefaultWorkingDirectory)/coverage
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -53,7 +63,7 @@ stages:
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
-  condition: succeeded()
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: Deploy
     displayName: Deploy
@@ -72,4 +82,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|10.10'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+              startUpCommand: 'NODE_ENV=production npm run start'
