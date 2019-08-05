@@ -44,6 +44,13 @@ stages:
         testResultsFormat: 'JUnit'
         testResultsFiles: 'junit.xml'
 
+    - task: PublishCodeCoverageResults@1
+      displayName: 'Publish code coverage results'
+      inputs:
+        codeCoverageTool: 'cobertura'
+        summaryFileLocation: ${System.DefaultWorkingDirectory}/coverage/cobetura-coverage.xml
+        reportDirectory: ${System.DefaultWorkingDirectory}/coverage
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:

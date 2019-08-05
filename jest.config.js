@@ -14,6 +14,7 @@ module.exports = {
     testMatch: [
         "**/test/**/*.test.(ts|js)"
     ],
+    coverageReporters: ["text", "cobertura", "html"], 
     reporters: [ "default", "jest-junit" ],
     testEnvironment: "node"
 };
