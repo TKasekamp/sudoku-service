@@ -1,0 +1,139 @@
+{
+	"basePath": "/api",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"Status": {
+			"enum": [
+				"Created",
+				"Finished"
+			],
+			"type": "string"
+		},
+		"Difficulty": {
+			"enum": [
+				"Easy",
+				"Medium",
+				"Hard"
+			],
+			"type": "string"
+		},
+		"Sudoku": {
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"status": {
+					"$ref": "#/definitions/Status"
+				},
+				"difficulty": {
+					"$ref": "#/definitions/Difficulty"
+				}
+			},
+			"required": [
+				"id",
+				"status",
+				"difficulty"
+			],
+			"type": "object"
+		},
+		"SudokuCreationRequest": {
+			"properties": {
+				"difficulty": {
+					"$ref": "#/definitions/Difficulty"
+				}
+			},
+			"required": [
+				"difficulty"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "sudoku-service",
+		"version": "1.1.0",
+		"description": "Sudoku service with Typescript",
+		"license": {
+			"name": "MIT"
+		}
+	},
+	"paths": {
+		"/v1/sudoku/{id}": {
+			"get": {
+				"operationId": "GetSudoku",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/Sudoku"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/v1/sudoku": {
+			"get": {
+				"operationId": "GetSudokus",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Sudoku"
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateSudoku",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Sudoku"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "requestBody",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/SudokuCreationRequest"
+						}
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}
