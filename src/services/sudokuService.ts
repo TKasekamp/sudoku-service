@@ -10,11 +10,15 @@ const sudokus: Sudoku[] = [
 
 export class SudokuService {
 
-    public async createSudoku(request: SudokuCreationRequest): Promise<Sudoku> {
+    public async create(request: SudokuCreationRequest): Promise<Sudoku> {
         return {id: 'random', status: Status.Created, difficulty: request.difficulty};
     }
 
-    public async getSudokus() {
+    public async getList() {
         return sudokus;
+    }
+
+    public async get(id: string) {
+        return sudokus.find(s => s.id === id);
     }
 }
