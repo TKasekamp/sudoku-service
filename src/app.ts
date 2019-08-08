@@ -12,7 +12,10 @@ import bodyParser from 'body-parser';
 // const MongoStore = mongo(session);
 
 // Controllers (route handlers)
-import * as apiController from './controllers/api';
+// import * as apiController from './controllers/api';
+// for tsoa autogeneration
+import './controllers/sudokuController';
+import { RegisterRoutes } from './routes';
 
 // Create Express server
 const app = express();
@@ -33,6 +36,8 @@ app.set('port', process.env.PORT || 3000);
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+RegisterRoutes(app);
 // app.use(session({
 //     resave: true,
 //     saveUninitialized: true,
@@ -49,6 +54,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /**
  * API examples routes.
  */
-app.get('/api', apiController.getApi);
+// app.get('/api', apiController.getApi);
 
 export default app;

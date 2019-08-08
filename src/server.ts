@@ -1,4 +1,5 @@
 import errorHandler from 'errorhandler';
+// import morgan from 'morgan';
 
 import app from './app';
 
@@ -6,6 +7,7 @@ import app from './app';
  * Error Handler. Provides full stack - remove for production
  */
 app.use(errorHandler());
+// app.use(morgan('combined'));
 
 /**
  * Start Express server.
