@@ -2,6 +2,7 @@ import express from 'express';
 import compression from 'compression';  // compresses requests
 // import session from "express-session";
 import bodyParser from 'body-parser';
+import path from 'path';
 // import lusca from "lusca";
 // import mongo from "connect-mongo";
 // import flash from "express-flash";
@@ -51,9 +52,9 @@ RegisterRoutes(app);
 // app.use(lusca.xframe("SAMEORIGIN"));
 // app.use(lusca.xssProtection(true));
 
-/**
- * API examples routes.
- */
-// app.get('/api', apiController.getApi);
-
+app.use(express.static(path.join(__dirname, '../public')));
+app.use(function unmatchedRoutes (req, res) {
+    console.log('asdasds');
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 export default app;
